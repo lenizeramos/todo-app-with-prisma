@@ -1,30 +1,24 @@
-import { Request, Response, Router } from "express";
+import { Router } from "express";
 import { PrismaClient } from "@prisma/client";
+import { getTodo, addTodo, editTodo, deleteTodo } from "../../controllers/todoController";
 
-const prisma = new PrismaClient();
+export const prisma = new PrismaClient();
 
 export const router = Router();
 
-async function main() {
+/* async function main() {
   await prisma.todo.create({
     data: {
       description: "Morning run",
       completed: false,
     },
   });
-
   const users = await prisma.todo.findMany()
-
   console.table(users)
 }
+main(); */
 
-main();
-
-/* router.get("/", async (req: Request, res: Response) => {
-  res.json({
-    status: 'ok', 
-    message:'Your app is ready'
-  });
-}); */
-
-
+router.get("/", getTodo);
+router.post("/", addTodo);
+router.put("/:id", editTodo);
+router.delete("/:id", deleteTodo);

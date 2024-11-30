@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("head.ejs", { title: "Index", styles: "/css/index.css" }) %>
+  </head>
+  <body>
+    <div class="container py-5 border-container">
+      <h1 class="text-center mb-4">Todo App</h1>
+
+      <form class="d-flex mb-4">
+        <input
+          type="text"
+          id="new-todo-input"
+          name="description"
+          class="form-control me-2"
+          placeholder="Add a new todo"
+          required
+          maxlength="80"
+        />
+        <button type="button" class="btn btn-dark" id="todo-add-button">
+          Add Todo
+        </button>
+      </form>
+
+      <div class="alert alert-danger d-none" role="alert" id="error-message"></div>
+
+      <div>
+        <ul class="list-group">
+          <% todos.forEach(todo => { %>
+          <li
+            class="list-group-item "
+          >
+            <div class="todo-content d-flex justify-content-between align-items-center">
+              <div>
+                <input type="checkbox" class="form-check-input me-2 todo-toggle"
+                data-id="<%= todo.id %>" <%= todo.completed ? "checked" : "" %>
+                />
+                <span
+                  class="todo-description <%= todo.completed ? 'todo-completed' : '' %>"
+                >
+                  <%= todo.description %>
+                </span>
+              </div>
+              <div>
+                <button
+                  class="btn btn-outline-secondary btn-sm me-2 todo-edit-button"
+                  data-id="<%= todo.id %>"
+                  data-description="<%= todo.description %>"
+                >
+                <i class="fa-solid fa-pencil"></i>
+                </button>
+                <button
+                  class="btn btn-outline-danger btn-sm todo-delete-button"
+                  data-id="<%= todo.id %>"
+                >
+                <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="todo-edit-form d-none mt-2">
+              <input
+                type="text"
+                class="form-control me-2 edit-description-input"
+                value="<%= todo.description %>"
+              />
+              <button
+                class="btn btn-dark todo-save-button"
+                data-id="<%= todo.id %>"
+              >
+                Save
+              </button>
+            </div>
+          </li>
+          <% }) %>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
