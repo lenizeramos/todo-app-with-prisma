@@ -13,6 +13,7 @@
   "keywords": [],
   "description": "",
   "dependencies": {
+    "@prisma/client": "^6.0.0",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
@@ -28,8 +29,8 @@
     "@types/node": "^22.10.1",
     "@types/pg": "^8.11.6",
     "prisma": "^6.0.0",
-    "ts-node-dev": "^2.0.0",
     "sass": "^1.77.6",
+    "ts-node-dev": "^2.0.0",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2"
   }
